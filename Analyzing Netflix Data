@@ -1,0 +1,24 @@
+#I am querying a database of Nexflix data to answer the following questions.
+
+#1. How many movie titles are there in the database? 
+select count(*) FROM "ZarishAkbar"."title_info"
+WHERE type='Movie';
+
+#2. When was the most recent batch of tv shows and/or movies added to the database? 
+select max(date(date_added)) FROM "ZarishAkbar"."title_info";
+
+#3. List all the movies and tv shows in alphabetical order. 
+select title FROM "ZarishAkbar"."title_info"
+ORDER BY title asc;
+
+#4. Who was the Director for the movie Bright Star? 
+select director FROM "ZarishAkbar"."title_info" titles
+LEFT JOIN  "ZarishAkbar"."people_info" people
+ON titles.show_id=people.show_id
+where titles.title='Bright Star';
+
+#5. What is the oldest movie in the database and what year was it made? 
+select title, release_year FROM "ZarishAkbar"."title_info"
+WHERE type='Movie'
+ORDER BY release_year asc
+LIMIT 1;
