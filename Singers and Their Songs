@@ -1,0 +1,53 @@
+/*
+source: https://www.google.com/search?q=list+of+american+singers&oq=list+of+american+singers&aqs=chrome..69i57j0i512l3j0i10i22i30j0i22i30l5.10638j1j15&sourceid=chrome&ie=UTF-8
+*/
+
+--create table about singers and where they're from
+CREATE table singers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT,
+    state TEXT);
+    
+--insert information into table
+INSERT INTO singers (fullname, state) VALUES ("Elvis Presley", "Mississippi");
+INSERT INTO singers (fullname, state) VALUES ("Michael Jackson", "Indiana");
+INSERT INTO singers (fullname, state) VALUES ("Frank Sinatra", "New Jersey");
+INSERT INTO singers (fullname, state) VALUES ("Marvin Gaye", "D.C.");
+INSERT INTO singers (fullname, state) VALUES ("Prince", "Minnesota");
+INSERT INTO singers (fullname, state) VALUES ("Johnny Cash", "Arkansas");
+INSERT INTO singers (fullname, state) VALUES ("Aretha Franklin", "Tennessee");
+INSERT INTO singers (fullname, state) VALUES ("Stevie Wonder", "Michigan");
+INSERT INTO singers (fullname, state) VALUES ("Tina Turner", "Tennessee");
+INSERT INTO singers (fullname, state) VALUES ("Whitney Houston", "New Jersey");
+INSERT INTO singers (fullname, state) VALUES ("Dolly Parton", "Tennessee");
+INSERT INTO singers (fullname, state) VALUES ("Alicia Keys", "New York");
+INSERT INTO singers (fullname, state) VALUES ("James Brown", "South Carolina");
+INSERT INTO singers (fullname, state) VALUES ("Bob Dylan", "Minnesota");
+INSERT INTO singers (fullname, state) VALUES ("Kurt Cobain", "Washington");
+
+--create table about singers' well-known songs
+CREATE table song (
+    singer_id INTEGER,
+    songs TEXT);
+    
+--insert songs into table
+INSERT INTO song (singer_id, songs) VALUES (1, "Hound Dog, Jailhouse Rock");
+INSERT INTO song (singer_id, songs) VALUES (2,"Beat It, Thriller");
+INSERT INTO song (singer_id, songs) VALUES (3,"Summer Wind, The Way You Look Tonight");
+INSERT INTO song (singer_id, songs) VALUES (4, "What's Going On, You're All I Need to Get By");
+INSERT INTO song (singer_id, songs) VALUES (5,"Purple Rain, U Got the Look");
+INSERT INTO song (singer_id, songs) VALUES (6, "Ring of Fire, Man in Black");
+INSERT INTO song (singer_id, songs) VALUES (7, "Day Dreaming, Angel");
+INSERT INTO song (singer_id, songs) VALUES (8, "Fingertips, Lately");
+INSERT INTO song (singer_id, songs) VALUES (9, "The Best, Proud Mary");
+INSERT INTO song (singer_id, songs) VALUES (10, "Run to You, How Will I Know");
+INSERT INTO song (singer_id, songs) VALUES (11, "Jolene, You");
+INSERT INTO song (singer_id, songs) VALUES (12, "No One, Girl on Fire");
+INSERT INTO song (singer_id, songs) VALUES (13, "I Got You, Cold Sweat");
+INSERT INTO song (singer_id, songs) VALUES (14, "Every Grain of Sand, Not Dark Yet");
+INSERT INTO song (singer_id, songs) VALUES (15,"In Bloom, School");
+
+--display singers' names with their well-known songs    
+SELECT singers.fullname, song.songs FROM singers
+  JOIN song
+  ON singers.id = song.singer_id;
