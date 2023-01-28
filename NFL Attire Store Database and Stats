@@ -1,6 +1,7 @@
 --create football team attire store database
 CREATE TABLE NFL_Attire (id INTEGER PRIMARY KEY, team TEXT, color TEXT, item TEXT, price INTEGER, size TEXT);
 
+--insert values into table
 INSERT INTO NFL_Attire VALUES (1, "Baltimore Ravens", "purple", "shirt", 30, "M");
 INSERT INTO NFL_Attire VALUES (2, "Pittsburgh Steelers", "yellow", "jacket", 60, "L");
 INSERT INTO NFL_Attire VALUES (3, "Washington Redskins", "red", "jersey", 40, "XL");
