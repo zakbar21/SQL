@@ -1,0 +1,26 @@
+--create football team attire store database
+CREATE TABLE NFL_Attire (id INTEGER PRIMARY KEY, team TEXT, color TEXT, item TEXT, price INTEGER, size TEXT);
+
+INSERT INTO NFL_Attire VALUES (1, "Baltimore Ravens", "purple", "shirt", 30, "M");
+INSERT INTO NFL_Attire VALUES (2, "Pittsburgh Steelers", "yellow", "jacket", 60, "L");
+INSERT INTO NFL_Attire VALUES (3, "Washington Redskins", "red", "jersey", 40, "XL");
+INSERT INTO NFL_Attire VALUES (4, "Chicago Bears", "orange", "shirt", 30, "M");
+INSERT INTO NFL_Attire VALUES (5, "Dallas Cowboys", "blue", "hat", 20, "onesize");
+INSERT INTO NFL_Attire VALUES (6, "Green Bay Packers", "green", "jacket", 60, "XL");
+INSERT INTO NFL_Attire VALUES (7, "Minnesota Vikings", "purple", "shirt", 30, "S");
+INSERT INTO NFL_Attire VALUES (8, "New Orleans Saints", "gold", "hat", 20, "onesize");
+INSERT INTO NFL_Attire VALUES (9, "New York Giants", "blue", "jersey", 40, "M");
+INSERT INTO NFL_Attire VALUES (10, "San Francisco 49ers", "red", "jacket", 60, "M");
+INSERT INTO NFL_Attire VALUES (11, "Seattle Seahawks", "blue", "shirt", 30, "S");
+INSERT INTO NFL_Attire VALUES (12, "Tampa Bay Buccaneers", "red", "hat", 20, "onesize");
+INSERT INTO NFL_Attire VALUES (13, "Buffalo Bills", "blue", "jacket", 60, "L");
+INSERT INTO NFL_Attire VALUES (14, "Cleveland Browns", "orange", "shirt", 30, "XL");
+INSERT INTO NFL_Attire VALUES (15, "New York Jets", "green", "jersey", 40, "M");
+
+--display the database ordered by price
+SELECT * FROM NFL_Attire 
+ORDER BY price;
+    
+--what are the total prices for each category of items in the store? 
+SELECT item, SUM(price) FROM NFL_Attire 
+GROUP BY item;
