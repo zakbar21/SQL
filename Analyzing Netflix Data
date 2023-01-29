@@ -1,4 +1,4 @@
-#I am querying a database of Nexflix data to answer the following questions.
+#I am querying a database of Netflix data to answer the following questions.
 
 #1. How many movie titles are there in the database? 
 select count(*) FROM "ZarishAkbar"."title_info"
