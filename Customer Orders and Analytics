@@ -16,7 +16,6 @@ AND orderid <> 'Order ID'
 #customer account numbers for all orders placed in February
 SELECT distinct acctnum
 FROM BIT_DB.customers cus
-
 INNER JOIN BIT_DB.FebSales Feb
 ON cus.order_id = Feb.orderid
 WHERE LENGTH(orderid) = 6 
@@ -41,9 +40,15 @@ GROUP BY product
 #number of customers that ordered more than 2 products at a time and the average amount they spent
 SELECT COUNT(distinct cus.acctnum), AVG(quantity*price)
 FROM BIT_DB.FebSales Feb
-
 LEFT JOIN BIT_DB.customers cus
 ON Feb.orderid = cus.order_id
 WHERE Feb.quantity > 2
 AND LENGTH(orderid) = 6 
 AND orderid <> 'Order ID'
+
+#list all products sold in Los Angeles in February, and include how many of each were sold
+SELECT product, SUM(quantity)
+FROM BIT_DB.FebSales
+WHERE location like '%Los Angeles%'
+GROUP BY product
+
