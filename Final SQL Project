@@ -1,5 +1,9 @@
 # I used SQL to query the database and analyze the set of data provided.
 
+# information of customers in United Kingdom
+SELECT FirstName, LastName, CustomerId, Country FROM chinook.customers 
+WHERE Country = "United Kingdom";
+
 # information of customers not in France
 SELECT FirstName, LastName, CustomerId, Country FROM chinook.customers 
 WHERE Country != "France";
