@@ -1,0 +1,74 @@
+# I used SQL to query the database and analyze the set of data provided.
+
+# information of customers not in France
+SELECT FirstName, LastName, CustomerId, Country FROM chinook.customers 
+WHERE Country != "France";
+
+# customers from Germany
+SELECT * FROM chinook.customers 
+WHERE Country = "Germany" ;
+
+# invoices of customers from Canada, with each customer's full name, Invoice ID, Date of the invoice, and billing country
+SELECT cust.FirstName, cust.LastName, inv.InvoiceId, inv.BillingCountry, inv.InvoiceDate FROM chinook.invoices as inv 
+LEFT JOIN chinook.customers as cust 
+on inv.CustomerId = cust.CustomerId 
+WHERE inv.BillingCountry = "Canada";
+
+# employees who are IT Staff
+SELECT * FROM chinook.Employees
+WHERE Title = "IT Staff" ;
+
+# distinct list of billing countries from the Invoice table
+SELECT DISTINCT BillingCountry FROM chinook.Invoices ;
+
+# invoices associated with each sales agent with each Sales Agent's full name
+SELECT emp.LastName, emp.Firstname, inv.InvoiceId FROM chinook.Employees emp 
+JOIN chinook.Customers cust ON cust.SupportRepId = emp.EmployeeId
+JOIN chinook.Invoices Inv ON Inv.CustomerId = cust.CustomerId;
+
+# number of invoices in 2010
+SELECT COUNT(*)
+FROM chinook.Invoices
+WHERE InvoiceDate BETWEEN '2010-01-01' AND '2010-12-31';
+
+# total sales for 2011
+SELECT SUM(Total)
+FROM chinook.Invoices
+WHERE InvoiceDate BETWEEN '2011-01-01' AND '2011-12-31';
+
+# purchased track name with each invoice line ID 
+SELECT t.Name, i.InvoiceLineId
+FROM chinook.Invoice_items i
+JOIN chinook.Tracks t 
+ON i.TrackId = t.TrackId;
+
+# all the Tracks with Album name, Media type, and Genre 
+SELECT t.Name AS 'Track Name', a.Title AS 'Album Title', m.Name AS 'Media Type', g.Name AS 'Genre' FROM chinook.tracks t
+JOIN chinook.Albums a 
+on a.AlbumId = t.AlbumId
+JOIN chinook.Media_Types m
+on m.MediaTypeId = t.MediaTypeId
+JOIN chinook.Genres g
+on g.GenreId = t.GenreId;
+
+# total sales made by each sales agent
+SELECT emp.FirstName, emp.LastName,
+ROUND(SUM(Inv.Total), 2) as 'Total Sales' FROM chinook.Employees emp
+JOIN chinook.Customers cust 
+ON cust.SupportRepId = emp.EmployeeId
+JOIN chinook.Invoices Inv 
+ON Inv.CustomerId = cust.CustomerId
+WHERE emp.Title = 'Sales Support Agent' 
+GROUP BY emp.FirstName;
+
+# sales agent who made the most money in sales in 2012
+SELECT emp.FirstName, emp.LastName,
+ROUND(SUM(Inv.Total), 2) as 'Total Sales' FROM chinook.Employees emp
+JOIN chinook.Customers cust 
+ON cust.SupportRepId = emp.EmployeeId
+JOIN chinook.Invoices Inv 
+ON Inv.CustomerId = cust.CustomerId
+WHERE emp.Title = 'Sales Support Agent' 
+AND Inv.InvoiceDate LIKE '2012%' 
+GROUP BY emp.FirstName
+ORDER BY (round(sum(Inv.Total), 2))  DESC LIMIT 1;
